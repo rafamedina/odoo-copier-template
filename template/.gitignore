@@ -1,0 +1,34 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+/.venv
+/.pytest_cache
+/.ruff_cache
+
+# Unit test / coverage reports
+htmlcov/
+.coverage
+
+# Translations
+*.mo
+
+# Pycharm
+.idea
+
+# Visual Studio cache/options directory
+.vs/
+.vscode/*
+!.vscode/settings.json
+
+.env
+docker-compose.override.yml
+
+# OSX Files
+.DS_Store
+
+# Django stuff:
+*.log
+
+# Backup files
+*~
+*.swp

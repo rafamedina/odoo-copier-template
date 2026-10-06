@@ -1,0 +1,26 @@
+name: ${PROJECT_NAME:-odoo-dev}-test
+
+services:
+  db:
+    image: postgres:${POSTGRES_VERSION:-16}
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+      POSTGRES_DB: postgres
+    tmpfs:
+      - /var/lib/postgresql/data
+
+  odoo-test:
+    image: odoo:${ODOO_VERSION:-18}
+    depends_on:
+      - db
+    environment:
+      HOST: db
+      USER: odoo
+      PASSWORD: odoo
+    volumes:
+      - .:/mnt/extra-addons
+    command:
+      odoo -d test_db -i ${ODOO_MODULES:-base} --load-language=es_ES,en_US --test-enable
+      --test-tags=${ODOO_TEST_TAGS:-/base} --stop-after-init --log-level=test
+      --max-cron-threads=0

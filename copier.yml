@@ -1,0 +1,52 @@
+_subdirectory: template
+_tasks:
+  - git init -b main
+  - uv sync
+  - uv run pre-commit install --install-hooks
+# Questions
+project_name:
+  type: str
+  help: What is your project name?
+  validator: "{% if not project_name %}Required{% endif %}"
+
+odoo_version:
+  type: str
+  help: What is your Odoo version?
+  choices:
+    - "18.0"
+    - "19.0"
+  default: "18.0"
+
+author_name:
+  type: str
+  help: Who is going to be the author?
+  default: Wavext
+
+license:
+  type: str
+  help: Which license are you going to use?
+  choices:
+    - OPL-1
+    - LGPL-3
+    - AGPL-3
+  default: OPL-1
+
+create_module:
+  type: bool
+  help: Create a new empty module?
+  default: true
+
+module_name:
+  type: str
+  help: What is your module technical name? (snake_case)
+  when: "{{ create_module }}"
+  validator: >-
+    {% if not (module_name | regex_search('^[a-z][a-z0-9_]*$')) %}
+    Use lowercase letters, numbers and underscores, starting with a letter
+    {% endif %}
+
+module_dependencies:
+  type: str
+  help: Module dependencies (comma separated)
+  default: base
+  when: "{{ create_module }}"
