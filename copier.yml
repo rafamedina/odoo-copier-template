@@ -13,9 +13,9 @@ odoo_version:
   type: str
   help: What is your Odoo version?
   choices:
-    - "18.0"
-    - "19.0"
-  default: "18.0"
+    - "18.0.0.1"
+    - "19.0.0.1"
+  default: "18.0.0.1"
 
 author_name:
   type: str
@@ -44,6 +44,13 @@ module_name:
     {% if not (module_name | regex_search('^[a-z][a-z0-9_]*$')) %}
     Use lowercase letters, numbers and underscores, starting with a letter
     {% endif %}
+
+
+module_description:
+ type: str
+ help: Module Description
+ when: "{{ create_module }}"
+ 
 
 module_dependencies:
   type: str
