@@ -1,14 +1,13 @@
 {
     "name": "{{project_name}}",
-    "version": "{{odoo_version}}",
+    "version": "{{ odoo_version }}.1.0.0",
     "category": "Berpia",
-    "description": "((module_description))",
+    "summary": "{{module_summary}}",
     "author": "{{author_name}}",
     "website": "https://www.wavext.io",
     "license": "{{license}}",
-    "depends": ["{{module_dependencies}}"],
-    "data": [
-        "security/security.xml",      
+    "depends":{{ module_dependencies.split(',') | map('trim') | select | list | tojson }},
+    "data": [      
         "security/ir.model.access.csv",
     ],
     "application": True,

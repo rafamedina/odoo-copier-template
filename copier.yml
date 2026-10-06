@@ -13,9 +13,9 @@ odoo_version:
   type: str
   help: What is your Odoo version?
   choices:
-    - "18.0.0.1"
-    - "19.0.0.1"
-  default: "18.0.0.1"
+    - "18"
+    - "19"
+  default: "18"
 
 author_name:
   type: str
@@ -46,9 +46,9 @@ module_name:
     {% endif %}
 
 
-module_description:
+module_summary:
  type: str
- help: Module Description
+ help: Module Summary
  when: "{{ create_module }}"
  
 
