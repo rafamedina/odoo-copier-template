@@ -50,3 +50,8 @@ module_dependencies:
   help: Module dependencies (comma separated)
   default: base
   when: "{{ create_module }}"
+
+project_slug:
+  type: str
+  default: "{{ project_name | lower | regex_replace('[^a-z0-9]+', '-') | trim('-') }}"
+  when: false
