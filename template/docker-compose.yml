@@ -4,8 +4,8 @@ services:
   db:
     image: postgres:${POSTGRES_VERSION:-16}
     environment:
-      POSTGRES_USER: odoo
-      POSTGRES_PASSWORD: odoo
+      POSTGRES_USER: odoo #pragma: allowlist secret
+      POSTGRES_PASSWORD: odoo #pragma: allowlist secret
       POSTGRES_DB: postgres
     ports:
       - "${DB_PORT:-5433}:5432"
@@ -19,12 +19,12 @@ services:
     ports:
       - "${ODOO_PORT:-8069}:8069"
     environment:
-      HOST: db
-      USER: odoo
-      PASSWORD: odoo
+      HOST: db 
+      USER: odoo #pragma: allowlist secret
+      PASSWORD: odoo #pragma: allowlist secret
     volumes:
       # Every folder in the repo root with a __manifest__.py is an addon
-      - .:/mnt/extra-addons
+      - .:/mnt/extra-addons:z
       - odoo-data:/var/lib/odoo
     command:
       odoo -d ${ODOO_DB:-odoo} -i ${ODOO_MODULES:-base} -u ${ODOO_MODULES:-base}

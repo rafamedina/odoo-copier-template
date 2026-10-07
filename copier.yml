@@ -13,9 +13,9 @@ odoo_version:
   type: str
   help: What is your Odoo version?
   choices:
-    - "18"
-    - "19"
-  default: "18"
+    - "18.0"
+    - "19.0"
+  default: "18.0"
 
 author_name:
   type: str
